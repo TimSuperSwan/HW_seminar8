@@ -216,30 +216,41 @@ namespace Семинар_8
         } */
 
 
-        //Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+        //Задача 62. Напишите программу, которая заполнит спирально массив с четным (!!!) кол-вом столбцов .
 
-        
-        int[,] array = GetArray2(4,4,0,0);
+        /* Console.WriteLine("Введите кол-во строк:");
+        int Rows = int.Parse(Console.ReadLine());
+        Console.WriteLine("Введите кол-во столбцов:");
+        int Clmn = int.Parse(Console.ReadLine());
+        int[,] array = GetArray2(Rows,Clmn,0,0);
+
+        FillArrayAround(0,0);
+        PrintArray(array);
         
         int count = 1;
-        int i = 0;
-        int j = 0;
+        int i = new int();
+        int j = new int();
+        int row = Rows;
+        int column = Clmn;
 
-        void FillArrayAround (int row,int column){
-        
+        //Рекурсивный метод
+        void FillArrayAround (int I, int J){
+        i = I;
+        j = J;
         FillArrayRight();
         FillArrayDown();
         FillArrayLeft();
         FillArrayUp();
-        //FillArrayAround(i+1, j+1);
+        row = row-1;
+        column = column-1;
+        if (row>2)
+        {
+           FillArrayAround(i+1, j+1);
+        } 
         }
-        FillArrayAround(0,0);
-        Console.WriteLine($"i, j = {i} {j}");
-        
-        PrintArray(array);
-        
-        void FillArrayRight(){
-            if (array[i+1,j] == 0 && j<3)
+
+        void FillArrayRight(){ //заполняет вправо
+            if (j<column-1)
             {
                 
                 array[i,j] = count;
@@ -251,8 +262,8 @@ namespace Семинар_8
             return;
             
         }
-        void FillArrayDown(){
-            if (i<3)
+        void FillArrayDown(){  // заполняет вниз
+            if (i<row-1)
             {
                 
                 array[i,j] = count;
@@ -262,8 +273,8 @@ namespace Семинар_8
             }
             return;
         }
-        void FillArrayLeft(){
-            if (j>0)
+        void FillArrayLeft(){  // заполняет влево
+            if (j>array.GetLength(1)-column)
             {
                 
                 array[i,j] = count;
@@ -273,8 +284,8 @@ namespace Семинар_8
             }
             return;
         }
-        void FillArrayUp(){
-            if (i>0)
+        void FillArrayUp(){  // заполняет вверх
+            if (i>array.GetLength(0)-row)
             {
                 array[i,j] = count;
                 i--;
@@ -282,38 +293,8 @@ namespace Семинар_8
                 FillArrayUp();
             }
             return;
-        }
+        } */
 
-
-
-
-
-
-        /* void FillArrayRight(){
-        //if (array[x+1,z]==0 && array[x+1,z+1]==0 && x<3) //идет вправо
-        if (array[x,z] == 0 && z<3 ) //идет вправо
-              
-                        {
-                            array[x,z]=1;
-                            z = z+1;
-                            FillArrayRight();
-                        }
-                     if (array[x+1,z]==0 & array[x+1,z-1]==0 & x<3) // идет вниз
-                        {
-                            FillArrayRight(x+1,z);
-                        }
-                    if (array[x,z-1]==0 & array[x-1,z-1]==0 & z>0) // идет влево
-                        {
-                            FillArrayRight(x,z-1);
-                        }
-                    if (array[x-1,z]==0 & array[x-1,z+1]==0 & x>0) // идет ввверх
-                        {
-                            FillArrayRight(x+1,z);
-                        } 
-            } */
-                    
-                           
-            
         
 
         /* _____Рекомендованная задача: Отсортировать нечетные столбцы массива по возрастанию. 
