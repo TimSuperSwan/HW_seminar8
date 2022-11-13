@@ -22,20 +22,20 @@ namespace Семинар_8
         9 5 3 2
         8 4 4 2
         */
-        /*
-        Console.WriteLine("Введите кол-во строк:");
+        
+        /* Console.WriteLine("Введите кол-во строк:");
         int Rows = int.Parse(Console.ReadLine());
         Console.WriteLine("Введите кол-во столбцов");
         int Colums = int.Parse(Console.ReadLine());
         int[,] Array = GetArray2(Rows,Colums,0,9);
         PrintArray(Array);
         Console.WriteLine();
-        Sort(Array);
+        SortColumn(Array);
         PrintArray(Array);
     
 
         //метод сортировки массива по убыванию
-        void Sort (int[,] array){
+        void SortColumn (int[,] array){
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
@@ -53,8 +53,8 @@ namespace Семинар_8
                 }
             }
         
-        }
-        */
+        } */
+       
 
         //Задача 56: Задайте прямоугольный двумерный массив. 
         //Напишите программу, которая будет находить строку с наименьшей суммой элементов.
@@ -218,38 +218,143 @@ namespace Семинар_8
 
         //Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 
+        
         int[,] array = GetArray2(4,4,0,0);
-        int x = 0;
-        int z = 0;
-        FillArrayAround();
+        
+        int count = 1;
+        int i = 0;
+        int j = 0;
+
+        void FillArrayAround (int row,int column){
+        
+        FillArrayRight();
+        FillArrayDown();
+        FillArrayLeft();
+        FillArrayUp();
+        //FillArrayAround(i+1, j+1);
+        }
+        FillArrayAround(0,0);
+        Console.WriteLine($"i, j = {i} {j}");
+        
         PrintArray(array);
         
-        
-        void FillArrayAround(){
+        void FillArrayRight(){
+            if (array[i+1,j] == 0 && j<3)
+            {
+                
+                array[i,j] = count;
+                j++;
+                count++;
+                
+                FillArrayRight();
+            }
+            return;
+            
+        }
+        void FillArrayDown(){
+            if (i<3)
+            {
+                
+                array[i,j] = count;
+                i++;
+                count++;
+                FillArrayDown();
+            }
+            return;
+        }
+        void FillArrayLeft(){
+            if (j>0)
+            {
+                
+                array[i,j] = count;
+                j--;
+                count++;
+                FillArrayLeft();
+            }
+            return;
+        }
+        void FillArrayUp(){
+            if (i>0)
+            {
+                array[i,j] = count;
+                i--;
+                count++;
+                FillArrayUp();
+            }
+            return;
+        }
+
+
+
+
+
+
+        /* void FillArrayRight(){
         //if (array[x+1,z]==0 && array[x+1,z+1]==0 && x<3) //идет вправо
         if (array[x,z] == 0 && z<3 ) //идет вправо
               
                         {
                             array[x,z]=1;
                             z = z+1;
-                            FillArrayAround();
+                            FillArrayRight();
                         }
-                    /* if (array[x+1,z]==0 & array[x+1,z-1]==0 & x<3) // идет вниз
+                     if (array[x+1,z]==0 & array[x+1,z-1]==0 & x<3) // идет вниз
                         {
-                            FillArrayAround(x+1,z);
+                            FillArrayRight(x+1,z);
                         }
                     if (array[x,z-1]==0 & array[x-1,z-1]==0 & z>0) // идет влево
                         {
-                            FillArrayAround(x,z-1);
+                            FillArrayRight(x,z-1);
                         }
                     if (array[x-1,z]==0 & array[x-1,z+1]==0 & x>0) // идет ввверх
                         {
-                            FillArrayAround(x+1,z);
-                        } */
+                            FillArrayRight(x+1,z);
+                        } 
+            } */
                     
                            
             
-        }
+        
+
+        /* _____Рекомендованная задача: Отсортировать нечетные столбцы массива по возрастанию. 
+        Вывести массив изначальный и массив с отсортированными нечетными столбцами */
+
+        /* Console.WriteLine("Введите кол-во строк:");
+        int Rows = int.Parse(Console.ReadLine());
+        Console.WriteLine("Введите кол-во столбцов");
+        int Colums = int.Parse(Console.ReadLine());
+        int[,] Array = GetArray2(Rows,Colums,0,9);
+        PrintArray(Array);
+        Console.WriteLine();
+        SortColumn(Array);
+        PrintArray(Array);
+    
+
+        //метод сортировки нечетных столбцов массива по возростанию
+        void SortColumn (int[,] array){
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                for (int i = 0; i < array.GetLength(0)-1; i++)
+                {
+                    for (int k = 1; k < array.GetLength(0); k=k+2)
+                    {
+                        
+                    if (array[i,k] > array[i+1,k])
+                    {
+                        int lost = array[i,k];
+                        array[i,k] = array[i+1,k];
+                        array[i+1,k] = lost;
+                    }
+                    }
+                }
+            }
+        
+        } */
+ 
+
+
+
+
 
         void PrintArray (int[,] array){
             for (int i = 0; i < array.GetLength(0); i++){
